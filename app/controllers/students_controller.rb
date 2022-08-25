@@ -7,7 +7,8 @@ class StudentsController < ApplicationController
     students = (params[:name] == nil) ?
       Student.all
       :
-      Student.all.filter{|s| s.last_name == params[:name].capitalize() || s.first_name == params[:name].capitalize()}
+      # Student.all.filter{|s| s.last_name == params[:name].capitalize() || s.first_name == params[:name].capitalize()}
+      Student.all.filter{|s| [s.last_name, s.first_name].include?(params[:name].capitalize())}
     render json: students
   end
 
